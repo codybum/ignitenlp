@@ -6,6 +6,10 @@ class TransformerDataset(torch.utils.data.Dataset):
         self.texts = texts
         self.labels = labels
         self.tokenizer = tokenizer
+
+        #if self.tokenizer.pad_token is None:
+        #    self.tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+
         self.max_length = max_length
 
     def __getitem__(self, idx):
@@ -14,7 +18,7 @@ class TransformerDataset(torch.utils.data.Dataset):
         inputs = self.tokenizer(
             text,
             None,
-            #add_special_tokens=True,
+            add_special_tokens=True,
             max_length=self.max_length,
             truncation=True,
             #padding="max_length",
