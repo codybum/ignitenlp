@@ -14,10 +14,10 @@ class TransformerDataset(torch.utils.data.Dataset):
         inputs = self.tokenizer(
             text,
             None,
-            add_special_tokens=True,
+            #add_special_tokens=True,
             max_length=self.max_length,
             truncation=True,
-            padding="max_length",
+            #padding="max_length",
             return_tensors="pt",
         )
         inputs = {k: v.type(torch.long).squeeze(0) for k, v in inputs.items()}
