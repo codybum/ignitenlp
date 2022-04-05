@@ -19,7 +19,11 @@ def get_model(model_name, model_dir, drop_out, n_fc, num_classes):
 
 def get_dataset(cache_dir, tokenizer_name, tokenizer_dir, max_length):
     train_dataset, test_dataset = load_dataset("imdb", split=["train", "test"], cache_dir=cache_dir)
+
     tokenizer = get_tokenizer(tokenizer_name, tokenizer_dir)
+    if tokenizer.pad_token is None:
+        tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+
     train_texts, train_labels = train_dataset["text"], train_dataset["label"]
     test_texts, test_labels = test_dataset["text"], test_dataset["label"]
     train_dataset = TransformerDataset(train_texts, train_labels, tokenizer, max_length)
