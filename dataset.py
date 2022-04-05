@@ -7,8 +7,8 @@ class TransformerDataset(torch.utils.data.Dataset):
         self.labels = labels
         self.tokenizer = tokenizer
 
-        #if self.tokenizer.pad_token is None:
-        #    self.tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 
         self.max_length = max_length
 
