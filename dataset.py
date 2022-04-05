@@ -22,7 +22,7 @@ class TransformerDataset(torch.utils.data.Dataset):
             max_length=self.max_length,
             truncation=True,
             #padding="max_length",
-            padding=None,
+            padding="do_not_pad",
             return_tensors="pt",
         )
         inputs = {k: v.type(torch.long).squeeze(0) for k, v in inputs.items()}
